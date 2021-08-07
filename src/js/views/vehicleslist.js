@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
-export function PeopleList() {
-	const [people, setPeople] = useState([]);
+import { Context } from "../store/appContext";
+
+export function VehiclesList() {
+	const [vehicles, setVehicles] = useState([]);
+    const favorites = useContext(FavoritesContext);
 
 	React.useEffect(() => {
-		fetch("https://www.swapi.tech/api/people")
+		fetch("https://www.swapi.tech/api/vehicles")
 			.then(res => res.json())
-			.then(data => setPeople(data.results))
+			.then(data => setVehicles(data.results))
 			.catch(err => console.error(err));
 	}, []);
 
 	return (
 		<div className="container-fluid">
 			<div className="card-group">
-				{people.map((person, index) => {
+				{vehicles.map((vehicles, index) => {
 					return (
 						<div key={index} className="card" style={{ width: "18rem" }}>
 							<img
@@ -23,13 +26,17 @@ export function PeopleList() {
 								alt="..."
 							/>
 							<div className="card-body">
-								<h5 className="card-title">{person.name}</h5>
+								<h5 className="card-title">{vehicles.name}</h5>
 								<p className="card-text">
-									<a href={"/people/" + person.uid}>People Detail</a>
+									<a href={"/people/" + vehicles.uid}>Vehicles Detail</a>
 								</p>
-								<a href={"/people/" + person.uid} className="btn btn-primary">
+								<a href={"/people/" + vehicles.uid} className="btn btn-primary">
 									Learn more!
 								</a>
+                                    <button onClick={() =>{
+                                        favorites.setFavorites([...favorites.favorites, vehicles.name])
+                                    }}
+
 								<p className="card-text">
 									<small className="text-muted">Last updated 3 mins ago</small>
 								</p>

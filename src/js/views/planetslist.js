@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
-export function PeopleList() {
-	const [people, setPeople] = useState([]);
+import { Context } from "../store/appContext";
+
+export function PlanetsList() {
+	const [planets, setPlanets] = useState([]);
 
 	React.useEffect(() => {
-		fetch("https://www.swapi.tech/api/people")
+		fetch("https://www.swapi.tech/api/planets")
 			.then(res => res.json())
-			.then(data => setPeople(data.results))
+			.then(data => setPlanets(data.results))
 			.catch(err => console.error(err));
 	}, []);
 
 	return (
 		<div className="container-fluid">
 			<div className="card-group">
-				{people.map((person, index) => {
+				{planets.map((planets, index) => {
 					return (
 						<div key={index} className="card" style={{ width: "18rem" }}>
 							<img
@@ -23,11 +25,11 @@ export function PeopleList() {
 								alt="..."
 							/>
 							<div className="card-body">
-								<h5 className="card-title">{person.name}</h5>
+								<h5 className="card-title">{planets.name}</h5>
 								<p className="card-text">
-									<a href={"/people/" + person.uid}>People Detail</a>
+									<a href={"/people/" + planets.uid}>Planets Detail</a>
 								</p>
-								<a href={"/people/" + person.uid} className="btn btn-primary">
+								<a href={"/people/" + planets.uid} className="btn btn-primary">
 									Learn more!
 								</a>
 								<p className="card-text">
