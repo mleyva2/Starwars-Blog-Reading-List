@@ -59,8 +59,11 @@ button.btn.btn-outline-warning {
   }
   
   h1 {
-      color: white;
-      font-family: 'Righteous', cursive;
+      color: rgb(197, 5, 5);
+  }
+
+  #pageheading{
+      color: black;
   }
   
   .container-fluid {
@@ -69,20 +72,17 @@ button.btn.btn-outline-warning {
    
 }
 
-p, td{
-    font-family: 'Righteous', cursive;
-    color: white;
+td{
+    color: rgb(197, 5, 5);
 }
 
 th {
-    font-family: 'Bangers', cursive;
-    color: white;
+    color: rgb(197, 5, 5);
     font-size: 20px;
 }
 
 #indiv_descrip {
-    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-    opacity: 0.6;
+    color: black;
     border-radius: 25px;
 }
 
@@ -101,9 +101,6 @@ th {
   
   }
   
-  h1 {
-    font-family: 'Bangers', cursive;
-  }
 
   .scrolling-wrapper-flexbox {
     display: flex;

@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
 import { PeopleList } from "./peoplelist";
 import { PlanetsList } from "./planetslist";
 import { VehiclesList } from "./vehicleslist";
-import { Navbar } from "../component/navbar";
 
 export const Home = () => {
 	return (

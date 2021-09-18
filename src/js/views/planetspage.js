@@ -24,7 +24,9 @@ export function PlanetsPage() {
 					<img src="https://via.placeholder.com/500x400" />
 				</div>
 				<div className="col-5 justify-content-center">
-					<h1 className="text-center">{planets !== null ? planets.name : null}</h1>
+					<h1 className="text-center" id="pageheading">
+						{planets !== null ? planets.name : null}
+					</h1>
 					<p className="text-center">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris turpis urna, imperdiet dictum
 						imperdiet rhoncus, rhoncus id diam. Donec porttitor est at arcu lacinia, a tempor tortor ornare.

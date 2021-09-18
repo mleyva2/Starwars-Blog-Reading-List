@@ -20,7 +20,7 @@ export function PeopleList() {
 		<div className="container">
 			<div className="row mt-3">
 				<div className="col-10 pt-3">
-					<h1>CHARACTERS</h1>
+					<h1>Characters</h1>
 				</div>
 				<div className="col-2 py-3 d-flex justify-content-end">
 					<button className="btn btn-outline-secondary mx-3">
