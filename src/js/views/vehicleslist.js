@@ -1,66 +1,79 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { FavoritesContext } from "./favoritescontext";
 
-import { Context } from "../store/appContext";
+import "../../styles/styles.css";
 
 export function VehiclesList() {
 	const [vehicles, setVehicles] = useState([]);
-	const favorites = useContext(FavoritesContext);
+	const f = useContext(FavoritesContext);
 
 	React.useEffect(() => {
-		fetch("https://www.swapi.tech/api/vehicles")
+		fetch("https://www.swapi.tech/api/vehicles/")
 			.then(res => res.json())
 			.then(data => setVehicles(data.results))
 			.catch(err => console.error(err));
 	}, []);
 
 	return (
-		<div className="container-fluid">
-			<div className="card-group">
-				{vehicles.map((vehicles, index) => {
-					return (
-						<div key={index} className="card" style={{ width: "18rem" }}>
-							<img
-								src="https://via.placeholder.com/400x200.png?text=Melissa"
-								className="card-img-top"
-								alt="..."
-							/>
-							<div className="card-body">
-								<h5 className="card-title">{vehicles.name}</h5>
-								<p className="card-text">
-									<a className="btn btn-primary" href={"/vehicles/" + vehicles.uid} role="button">
-										Learn More!
-									</a>
-									{favorites.favorites.includes(vehicles.name) ? (
-										<button
-											onClick={() => {
-												favorites.setFavorites(
-													favorites.favorites.filter(item => item !== vehicles.name)
-												);
-											}}
-											type="button"
-											className="btn btn-warning">
-											<i className="far fa-heart" />
-										</button>
-									) : (
-										<button
-											onClick={() => {
-												favorites.setFavorites([...favorites.favorites, vehicles.name]);
-											}}
-											type="button"
-											className="btn btn-outline-warning">
-											<i className="far fa-heart" />
-										</button>
-									)}
-								</p>
-								<p className="card-text">
-									<small className="text-muted">Last updated 3 mins ago</small>
-								</p>
+		<div className="container">
+			<div className="row">
+				<div className="col-10 pt-3">
+					<h1>Vehicles</h1>
+				</div>
+				<div className="col-2 py-3 d-flex justify-content-end">
+					<button className="btn btn-outline-secondary mx-3">
+						<i className="fas fa-chevron-left fa-lg" />
+					</button>
+					<button className="btn btn-outline-secondary">
+						<i className="fas fa-chevron-right fa-lg" />
+					</button>
+				</div>
+			</div>
+			<div className="row d-inline-flex w-100">
+				<div className="scrolling-wrapper-flexbox">
+					{vehicles.map((vehicle, index) => {
+						return (
+							<div key={index} className="col-4">
+								<div className="card">
+									<img src="https://via.placeholder.com/150" className="card-img-top" alt="..." />
+									<div className="card-body">
+										<h5 className="card-title">{vehicle.name}</h5>
+										<p className="card-text"> </p>
+										<div className="row justify-content-between px-2">
+											<a
+												className="btn btn-primary"
+												href={"/vehicles/" + vehicle.uid}
+												role="button">
+												Learn More!
+											</a>
+											{f.favorites.includes(vehicle.name) ? (
+												<button
+													onClick={() => {
+														f.setFavorites(
+															f.favorites.filter(item => item !== vehicle.name)
+														);
+													}}
+													type="button"
+													className="btn btn-warning">
+													<i className="far fa-heart" />
+												</button>
+											) : (
+												<button
+													onClick={() => {
+														f.setFavorites([...f.favorites, vehicle.name]);
+													}}
+													type="button"
+													className="btn btn-outline-warning">
+													<i className="far fa-heart" />
+												</button>
+											)}
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);
